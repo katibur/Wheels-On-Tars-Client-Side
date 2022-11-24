@@ -16,7 +16,10 @@ const Navbar = () => {
         <li><Link to='/blogs'>Blogs</Link ></li>
         {
             user?.accessToken ?
-                <li><button onClick={handleLogout}>Logout</button ></li>
+                <>
+                    <li><Link to='/dashboard'>Dashboard</Link ></li>
+                    <li><button onClick={handleLogout}>Logout</button ></li>
+                </>
                 :
                 <li><Link to='/login'>Login</Link ></li>
         }

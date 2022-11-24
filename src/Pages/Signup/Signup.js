@@ -6,7 +6,6 @@ import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import useToken from '../../Hooks/useToken';
 
 import { FcGoogle } from 'react-icons/fc';
-import { setAuthToken } from '../../Contexts/AuthProvider/Auth';
 
 
 const Signup = () => {
@@ -65,17 +64,37 @@ const Signup = () => {
             })
     }
 
-
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(res => {
                 const user = res.user;
                 console.log(user);
-
-                setAuthToken(user);
+                const userEmail = user.email;
+                const name = user.displayName;
+                saveSocialUser(userEmail, name);
             })
             .catch(err => console.error(err))
     }
+
+    const saveSocialUser = (email, name) => {
+        const user = {
+            email,
+            name
+        }
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                const userEmail = data.email;
+                setCreatedUserEmail(userEmail);
+            })
+    }
+
 
 
 

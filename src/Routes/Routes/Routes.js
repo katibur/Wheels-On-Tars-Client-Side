@@ -9,6 +9,7 @@ import Blogs from "../../Pages/Blogs/Blogs";
 import Products from "../../Pages/Products/Products";
 
 import errorPhoto from '../../assets/errorPhoto.png';
+import Dashboard from "../../Pages/Dashboard/Dashboard";
 
 export const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
                 path: '/categories/:id',
                 loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`),
                 element: <Products></Products>
+            },
+            {
+                path: '/dashboard',
+                element: <Dashboard></Dashboard>
             }
         ]
     },

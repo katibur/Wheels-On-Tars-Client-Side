@@ -5,7 +5,6 @@ import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import useToken from '../../Hooks/useToken';
 
 import { FcGoogle } from 'react-icons/fc';
-import { setAuthToken } from '../../Contexts/AuthProvider/Auth';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -44,8 +43,8 @@ const Login = () => {
             .then(res => {
                 const user = res.user;
                 console.log(user);
-
-                setAuthToken(user);
+                const userEmail = user.email;
+                setLoginUserEmail(userEmail);
             })
             .catch(err => console.error(err))
     }
