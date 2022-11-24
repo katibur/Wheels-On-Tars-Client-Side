@@ -18,6 +18,7 @@ const Products = () => {
                     products.map(product => <ProductCard
                         key={product._id}
                         product={product}
+                        booking={booking}
                         setBooking={setBooking}
                     ></ProductCard>)
                 }

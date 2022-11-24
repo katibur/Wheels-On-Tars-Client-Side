@@ -2,7 +2,7 @@ import React from 'react';
 
 // import BookingModal from './BookingModal/BookingModal';
 
-const ProductCard = ({ setBooking, product }) => {
+const ProductCard = ({ setBooking, booking, product }) => {
     const { img, name, location, originalPrice, resalePrice, warranty, used, sellerName } = product;
 
     return (
