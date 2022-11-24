@@ -4,10 +4,12 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import useToken from '../../Hooks/useToken';
 
+import { FcGoogle } from 'react-icons/fc';
+import { setAuthToken } from '../../Contexts/AuthProvider/Auth';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { Login } = useContext(AuthContext);
+    const { Login, googleSignIn } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const [loginUserEmail, setLoginUserEmail] = useState('');
     const [token] = useToken(loginUserEmail);
@@ -36,9 +38,21 @@ const Login = () => {
             })
     }
 
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(res => {
+                const user = res.user;
+                console.log(user);
+
+                setAuthToken(user);
+            })
+            .catch(err => console.error(err))
+    }
+
     return (
-        <div className='h-[800px] flex justify-center items-center'>
-            <div className='w-96 p-7'>
+        <div className='h-[550px] flex justify-center items-center'>
+            <div className='w-96 p-7 border-2 border-indigo-500 rounded-lg'>
                 <h2 className='text-xl text-center'>Login</h2>
                 <form onSubmit={handleSubmit(handleLogin)}>
 
@@ -71,7 +85,7 @@ const Login = () => {
                 </form>
                 <p>New Here?<Link to='/signup' className='text-primary'>Create A New Account.</Link></p>
                 <div className="divider">OR</div>
-                <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleGoogleSignIn} className='btn btn-outline w-full btn-primary'><FcGoogle></FcGoogle> CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );

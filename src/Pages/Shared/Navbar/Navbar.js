@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 
 const Navbar = () => {
+    const { user, Logout } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        Logout()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
 
     const menuItems = <React.Fragment>
         <li><Link to='/'>Home</Link ></li>
         <li><Link to='/blogs'>Blogs</Link ></li>
-        <li><Link to='/login'>Login</Link ></li>
+        {
+            user?.accessToken ?
+                <li><button onClick={handleLogout}>Logout</button ></li>
+                :
+                <li><Link to='/login'>Login</Link ></li>
+        }
 
     </React.Fragment>
     return (

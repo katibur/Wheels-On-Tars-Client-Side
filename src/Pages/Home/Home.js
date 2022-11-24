@@ -21,7 +21,7 @@ const Home = () => {
             <h1 className='text-center text-4xl font-bold'>Buy & Sell AT WHEELS ON TARS</h1>
 
             <div className='grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 my-12'>
-                {
+                {categories &&
                     categories.map(category => <Categories
                         key={category._id}
                         category={category}

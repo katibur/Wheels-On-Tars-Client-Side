@@ -5,9 +5,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 import useToken from '../../Hooks/useToken';
 
+import { FcGoogle } from 'react-icons/fc';
+import { setAuthToken } from '../../Contexts/AuthProvider/Auth';
+
 
 const Signup = () => {
-    const { createUser, updateUser } = useContext(AuthContext);
+    const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
@@ -63,10 +66,22 @@ const Signup = () => {
     }
 
 
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(res => {
+                const user = res.user;
+                console.log(user);
+
+                setAuthToken(user);
+            })
+            .catch(err => console.error(err))
+    }
+
+
 
     return (
-        <div className='h-[800px] flex justify-center items-center'>
-            <div className='w-96 p-7'>
+        <div className='h-[550px] flex justify-center items-center'>
+            <div className='w-96 p-7 border-2 border-indigo-600 rounded-lg'>
                 <h2 className='text-xl text-center'>Signup</h2>
                 <form onSubmit={handleSubmit(signupHandler)}>
 
@@ -114,7 +129,7 @@ const Signup = () => {
 
                 <p>Already Have An Account?<Link to='/Login' className='text-primary'>Login Here.</Link></p>
                 <div className="divider">OR</div>
-                <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleGoogleSignIn} className='btn btn-outline w-full btn-primary'><FcGoogle></FcGoogle> CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );

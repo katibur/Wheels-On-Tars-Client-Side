@@ -6,14 +6,27 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        dosctorsTheme: {
-          primary: '#0FCFEC',
-          secondary: "#19D3AE",
-          accent: "#3A4256",
-          neutral: "#3D4451",
-          "base-100": "#FFFFFF",
-        }
-      }, "garden"
+        mytheme: {
+
+          "primary": "#ffcfc9",
+
+          "secondary": "#bbabfc",
+
+          "accent": "#53edaf",
+
+          "neutral": "#272631",
+
+          "base-100": "#2A344B",
+
+          "info": "#5885E4",
+
+          "success": "#169848",
+
+          "warning": "#F59D05",
+
+          "error": "#F81616",
+        },
+      },
     ]
   },
   theme: {
