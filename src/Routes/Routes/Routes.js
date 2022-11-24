@@ -8,6 +8,8 @@ import Signup from "../../Pages/Signup/Signup";
 import Blogs from "../../Pages/Blogs/Blogs";
 import Products from "../../Pages/Products/Products";
 
+import errorPhoto from '../../assets/errorPhoto.png';
+
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -36,5 +38,9 @@ export const router = createBrowserRouter([
                 element: <Products></Products>
             }
         ]
+    },
+    {
+        path: '*',
+        element: <div className="max-w-screen-2xl mx-auto my-10"><img className="mx-auto" src={errorPhoto} alt="" /></div>
     }
 ]);
