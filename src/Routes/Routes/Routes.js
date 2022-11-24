@@ -10,6 +10,7 @@ import Products from "../../Pages/Products/Products";
 
 import errorPhoto from '../../assets/errorPhoto.png';
 import Dashboard from "../../Pages/Dashboard/Dashboard";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -41,6 +42,11 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <Dashboard></Dashboard>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
             }
         ]
     },
