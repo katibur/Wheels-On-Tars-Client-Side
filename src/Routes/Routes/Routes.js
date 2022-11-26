@@ -12,6 +12,11 @@ import errorPhoto from '../../assets/errorPhoto.png';
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
 import PrivateRouter from "../PrivateRoutes/PrivateRouter";
+import DashboardLayout from "../../Layouts/DashboardLayout";
+import BookedProducts from "../../Pages/Dashboard/BookedProducts/BookedProducts";
+import AdminRoute from "../PrivateRoutes/AdminRoute";
+import AllUsers from "../../Pages/Allusers/Allusers";
+import AddProduct from "../../Pages/AddProduct/AddProduct";
 
 export const router = createBrowserRouter([
     {
@@ -39,10 +44,25 @@ export const router = createBrowserRouter([
                 path: '/categories/:id',
                 loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`),
                 element: <Products></Products>
-            },
+            }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRouter><DashboardLayout></DashboardLayout></PrivateRouter>,
+        errorElement: <DisplayError></DisplayError>,
+        children: [
             {
                 path: '/dashboard',
-                element: <PrivateRouter><Dashboard></Dashboard></PrivateRouter>
+                element: <BookedProducts></BookedProducts>
+            },
+            {
+                path: '/dashboard/users',
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            },
+            {
+                path: '/dashboard/addProduct',
+                element: <AddProduct></AddProduct>
             },
             {
                 path: '/dashboard/payment/:id',

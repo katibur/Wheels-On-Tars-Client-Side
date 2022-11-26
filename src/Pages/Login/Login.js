@@ -13,6 +13,7 @@ const Login = () => {
     const [loginUserEmail, setLoginUserEmail] = useState('');
     const [token] = useToken(loginUserEmail);
 
+
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -42,10 +43,32 @@ const Login = () => {
         googleSignIn()
             .then(res => {
                 const user = res.user;
+                console.log(user);
                 const userEmail = user.email;
-                setLoginUserEmail(userEmail);
+                const name = user.displayName;
+                saveSocialUser(userEmail, name);
             })
             .catch(err => console.error(err))
+    }
+
+    const saveSocialUser = (email, name) => {
+        const user = {
+            email,
+            name,
+            role: 'buyer'
+        }
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                const userEmail = data.email;
+                setLoginUserEmail(userEmail);
+            })
     }
 
     return (
