@@ -9,13 +9,13 @@ import Blogs from "../../Pages/Blogs/Blogs";
 import Products from "../../Pages/Products/Products";
 
 import errorPhoto from '../../assets/errorPhoto.png';
-import Dashboard from "../../Pages/Dashboard/Dashboard";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
 import PrivateRouter from "../PrivateRoutes/PrivateRouter";
 import DashboardLayout from "../../Layouts/DashboardLayout";
 import BookedProducts from "../../Pages/Dashboard/BookedProducts/BookedProducts";
 import AdminRoute from "../PrivateRoutes/AdminRoute";
 import AllUsers from "../../Pages/Allusers/Allusers";
+import MyProducts from "../../Pages/MyProducts/MyProducts";
 import AddProduct from "../../Pages/AddProduct/AddProduct";
 
 export const router = createBrowserRouter([
@@ -63,6 +63,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/addProduct',
                 element: <AddProduct></AddProduct>
+            },
+            {
+                path: '/dashboard/myProducts',
+                element: <MyProducts></MyProducts>
             },
             {
                 path: '/dashboard/payment/:id',

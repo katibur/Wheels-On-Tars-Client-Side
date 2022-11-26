@@ -18,7 +18,6 @@ const Categories = ({ category }) => {
                         <img src={photo} alt={name} className="rounded-xl" />
                     </PhotoView>
                 </PhotoProvider>
-                {/* <img src={photo} alt={name} className="rounded-xl" /> */}
             </figure>
             <div className="card-body items-center text-center">
                 <h2 className="card-title">{name}</h2>

@@ -1,23 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
 import useAdmin from '../Hooks/useAdmin/useAdmin';
 import { AuthContext } from '../Contexts/AuthProvider/AuthProvider';
+import useSeller from '../Hooks/isSeller/useSeller';
+import useBuyer from '../Hooks/useBuyer/useBuyer';
 
 
 const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
     const [isAdmin] = useAdmin(user?.email);
-
-    const [singleUser, setSingleUser] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:5000/users')
-            .then(res => res.json())
-            .then(data => {
-                data.map(user => setSingleUser(user))
-            })
-    }, [])
+    const [isSeller] = useSeller(user?.email);
+    const [isBuyer] = useBuyer(user?.email);
 
     return (
         <div>
@@ -31,7 +25,10 @@ const DashboardLayout = () => {
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 text-base-content bg-slate-700 mx-2">
 
-                        <li><Link to='/dashboard'>My Orders</Link></li>
+                        {
+                            isBuyer &&
+                            <li><Link to='/dashboard'>My Orders</Link></li>
+                        }
                         {
                             isAdmin && <>
                                 <li><Link to='/dashboard/users'>All Users</Link></li>
@@ -40,7 +37,7 @@ const DashboardLayout = () => {
                             </>
                         }
                         {
-                            singleUser?.role === 'seller' && <>
+                            isSeller && <>
                                 <li><Link to='/dashboard/addProduct'>Add Product</Link></li>
                                 <li><Link to='/dashboard/myProducts'>My Products</Link></li>
                             </>

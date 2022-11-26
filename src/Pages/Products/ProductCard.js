@@ -8,7 +8,6 @@ const ProductCard = ({ setBooking, booking, product }) => {
     const { img, name, location, originalPrice, resalePrice, warranty, used, sellerName } = product;
     const { user } = useContext(AuthContext);
 
-
     const [singleUser, setSingleUser] = useState([]);
 
     useEffect(() => {
@@ -18,7 +17,6 @@ const ProductCard = ({ setBooking, booking, product }) => {
                 data.map(user => setSingleUser(user))
             })
     }, [])
-
 
 
     return (

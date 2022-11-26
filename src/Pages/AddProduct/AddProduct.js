@@ -17,7 +17,7 @@ const AddProduct = () => {
         const image = data.image[0];
         const formData = new FormData();
         formData.append("image", image);
-        fetch(`https://api.imgbb.com/1/upload?key=${'3c02ebae27809e5199bba6cfb5fc3b1e'}`, {
+        fetch(`https://api.imgbb.com/1/upload?key=${'068e8b58e9a28384a889886932a5d806'}`, {
             method: "POST",
             body: formData,
         })
@@ -55,9 +55,9 @@ const AddProduct = () => {
             });
     };
     return (
-        <div class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-100 mt-12 mb-12">
-            <form onSubmit={handleSubmit(handleAddproduct)}>
-                <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2 items-center">
+        <div className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-100 mt-12 mb-12">
+            <form onSubmit={() => handleSubmit(handleAddproduct)}>
+                <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2 items-center">
                     <div>
                         <label htmlFor="productName" className="block dark:text-gray-400">
                             Product Name
@@ -198,7 +198,6 @@ const AddProduct = () => {
                             className="w-full px-4 py-3 rounded-md border-2 border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-300"
                         />
                     </div>
-
 
                     <div>
                         <label htmlFor="category" className="block dark:text-gray-400 mt-6">
