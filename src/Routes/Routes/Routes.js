@@ -11,6 +11,7 @@ import Products from "../../Pages/Products/Products";
 import errorPhoto from '../../assets/errorPhoto.png';
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
+import PrivateRouter from "../PrivateRoutes/PrivateRouter";
 
 export const router = createBrowserRouter([
     {
@@ -41,7 +42,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard',
-                element: <Dashboard></Dashboard>
+                element: <PrivateRouter><Dashboard></Dashboard></PrivateRouter>
             },
             {
                 path: '/dashboard/payment/:id',

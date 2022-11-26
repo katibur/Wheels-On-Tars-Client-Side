@@ -24,9 +24,10 @@ const Signup = () => {
     }
 
     const signupHandler = (data) => {
+        // console.log(data);
         setSignupError('');
 
-        createUser(data.email, data.password)
+        createUser(data.email, data.password, data.role)
             .then(Result => {
                 const user = Result.user;
                 console.log(user);
@@ -36,7 +37,7 @@ const Signup = () => {
                 };
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.email, data.name);
+                        saveUser(data.email, data.name, data.role);
                     })
                     .catch(err => console.error(err))
             })
@@ -46,11 +47,13 @@ const Signup = () => {
             })
     }
 
-    const saveUser = (email, name) => {
+    const saveUser = (email, name, role) => {
         const user = {
             email,
-            name
+            name,
+            role
         }
+        // console.log(user);
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -79,7 +82,8 @@ const Signup = () => {
     const saveSocialUser = (email, name) => {
         const user = {
             email,
-            name
+            name,
+            role: 'buyer'
         }
         fetch('http://localhost:5000/users', {
             method: 'POST',
@@ -99,7 +103,7 @@ const Signup = () => {
 
 
     return (
-        <div className='h-[550px] flex justify-center items-center'>
+        <div className='h-[650px] flex justify-center items-center'>
             <div className='w-96 p-7 border-2 border-indigo-600 rounded-lg'>
                 <h2 className='text-xl text-center'>Signup</h2>
                 <form onSubmit={handleSubmit(signupHandler)}>
@@ -141,6 +145,19 @@ const Signup = () => {
                         />
                         {errors.password && <span className='text-red-500'>{errors.password.message}</span>}
                     </div>
+
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"><span className="label-text font-bold">Role</span>
+                        </label>
+                        <select
+                            className="input input-bordered w-full"
+                            {...register("role")}
+                        >
+                            <option value='buyer'>Buyer</option>
+                            <option value='seller'>Seller</option>
+                        </select>
+                    </div>
+
                     <input className='btn btn-primary w-full mt-3' value='Signup' type="submit" />
                 </form>
 

@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import SiteDetails from './SiteDetails';
 import Categories from './Categories';
+import { useQuery } from '@tanstack/react-query';
+import Loading from '../Shared/Loading/Loading';
 
 const Home = () => {
-    const [categories, setCategories] = useState([]);
+    const url = 'http://localhost:5000/categories';
 
-
-
-    useEffect(() => {
-        fetch('http://localhost:5000/categories')
-            .then(res => res.json())
-            .then(data => {
-                setCategories(data)
+    const { data: categories = [], isLoading } = useQuery({
+        queryKey: ['categories'],
+        queryFn: async () => {
+            const res = await fetch(url, {
             })
-    }, [])
-
+            const data = await res.json();
+            return data;
+        }
+    })
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
     return (
         <div className='mx-auto'>
@@ -25,10 +29,8 @@ const Home = () => {
                     categories.map(category => <Categories
                         key={category._id}
                         category={category}
-
                     ></Categories>)
                 }
-
             </div>
 
             <SiteDetails></SiteDetails>

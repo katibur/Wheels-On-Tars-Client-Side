@@ -1,22 +1,31 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
+import { useQuery } from '@tanstack/react-query';
+import Loading from '../Shared/Loading/Loading';
 
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
 
-    const [bookings, setBookings] = useState();
+    const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
-    useEffect(() => {
-        const url = `http://localhost:5000/bookings?email=${user?.email}`;
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                setBookings(data)
+    const { data: bookings = [], isLoading } = useQuery({
+        queryKey: ['bookings', user?.email],
+        queryFn: async () => {
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
             })
-    }, [user?.email])
+            const data = await res.json();
+            return data;
+        }
+    })
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
     return (
         <div>
