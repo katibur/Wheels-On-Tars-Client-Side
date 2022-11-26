@@ -3,21 +3,13 @@ import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import useBuyer from '../../Hooks/useBuyer/useBuyer';
 
 const ProductCard = ({ setBooking, booking, product }) => {
-    const { img, name, location, originalPrice, resalePrice, warranty, used, sellerName } = product;
+    const { img, name, location, originalPrice, resalePrice, warranty, used, sellerName, time } = product;
     const { user } = useContext(AuthContext);
 
-    const [singleUser, setSingleUser] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:5000/users')
-            .then(res => res.json())
-            .then(data => {
-                data.map(user => setSingleUser(user))
-            })
-    }, [])
-
+    const [isBuyer] = useBuyer(user?.email);
 
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
@@ -36,9 +28,10 @@ const ProductCard = ({ setBooking, booking, product }) => {
                 <p><span className='font-bold'>Warranty Left:</span> {warranty}</p>
                 <p><span className='font-bold'>Used For:</span> {used}</p>
                 <p><span className='font-bold'>Seller Name:</span> {sellerName}</p>
+                <p><span className='font-bold'>Posted On:</span> {time ? time : '2 Weeks Ago'}</p>
                 <div className="card-actions justify-end">
                     {
-                        user?.accessToken ?
+                        isBuyer ?
                             <label
                                 onClick={() => setBooking(product)}
                                 htmlFor="booking-modal"

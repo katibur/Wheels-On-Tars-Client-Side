@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const AllUsers = () => {
+    const { user } = useContext(AuthContext);
 
     const { data: users = [], refetch } = useQuery({
-        queryKey: ['users'],
+        queryKey: ['users', user?.email],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/users')
             const data = await res.json();
@@ -23,7 +25,7 @@ const AllUsers = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                if (data.matchedCount > 0) {
+                if (data.deletedCount > 0) {
                     toast.success('Deleted successfully');
                     refetch();
                 }

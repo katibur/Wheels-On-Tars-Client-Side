@@ -2,7 +2,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 
 const CheckoutForm = ({ booking }) => {
-    const { price, email, customerName, _id } = booking;
+    const { price, email, patient, _id } = booking;
 
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
@@ -57,7 +57,7 @@ const CheckoutForm = ({ booking }) => {
                 payment_method: {
                     card: card,
                     billing_details: {
-                        name: customerName,
+                        name: patient,
                         email: email
                     },
                 },
@@ -69,6 +69,7 @@ const CheckoutForm = ({ booking }) => {
             return;
         }
         if (paymentIntent.status === 'succeeded') {
+
             const payment = {
                 price,
                 transactionId: paymentIntent.id,
@@ -76,7 +77,7 @@ const CheckoutForm = ({ booking }) => {
                 bookingId: _id
             }
 
-            fetch('http://localhost:5000/payments', {
+            fetch('https://doctors-portal-server-azure-pi.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -92,6 +93,7 @@ const CheckoutForm = ({ booking }) => {
                         setTransactionId(paymentIntent.id);
                     }
                 })
+
         }
         setProcessing(false);
     }

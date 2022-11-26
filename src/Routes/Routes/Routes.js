@@ -7,7 +7,6 @@ import Login from "../../Pages/Login/Login";
 import Signup from "../../Pages/Signup/Signup";
 import Blogs from "../../Pages/Blogs/Blogs";
 import Products from "../../Pages/Products/Products";
-
 import errorPhoto from '../../assets/errorPhoto.png';
 import Payment from "../../Pages/Dashboard/Payment/Payment";
 import PrivateRouter from "../PrivateRoutes/PrivateRouter";
@@ -17,6 +16,7 @@ import AdminRoute from "../PrivateRoutes/AdminRoute";
 import AllUsers from "../../Pages/Allusers/Allusers";
 import MyProducts from "../../Pages/MyProducts/MyProducts";
 import AddProduct from "../../Pages/AddProduct/AddProduct";
+import Dashboard from '../../Pages/Dashboard/Dashboard';
 
 export const router = createBrowserRouter([
     {
@@ -54,6 +54,10 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard',
+                element: <Dashboard></Dashboard>
+            },
+            {
+                path: '/dashboard/myorders',
                 element: <BookedProducts></BookedProducts>
             },
             {
