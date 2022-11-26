@@ -1,16 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
+
+
 const Categories = ({ category }) => {
-
     const { name, categories_id, photo } = category;
-
 
     return (
 
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure className="px-10 pt-10 h-60">
-                <img src={photo} alt={name} className="rounded-xl" />
+                <PhotoProvider>
+                    <PhotoView src={photo}>
+                        <img src={photo} alt={name} className="rounded-xl" />
+                    </PhotoView>
+                </PhotoProvider>
+                {/* <img src={photo} alt={name} className="rounded-xl" /> */}
             </figure>
             <div className="card-body items-center text-center">
                 <h2 className="card-title">{name}</h2>

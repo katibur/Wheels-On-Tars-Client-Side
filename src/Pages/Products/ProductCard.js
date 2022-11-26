@@ -1,6 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
+
 const ProductCard = ({ setBooking, booking, product }) => {
     const { img, name, location, originalPrice, resalePrice, warranty, used, sellerName } = product;
     const { user } = useContext(AuthContext);
@@ -20,7 +23,13 @@ const ProductCard = ({ setBooking, booking, product }) => {
 
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
-            <figure><img src={img} alt={name} /></figure>
+
+            <PhotoProvider>
+                <PhotoView src={img}>
+                    <img src={img} alt={name} />
+                </PhotoView>
+            </PhotoProvider>
+
             <div className="card-body my-6">
                 <h2 className="card-title font-bold mx-auto mb-4">{name}</h2>
                 <p><span className='font-bold'>Place: </span>{location}</p>
