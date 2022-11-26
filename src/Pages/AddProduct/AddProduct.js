@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const AddProduct = () => {
+
+    const { user } = useContext(AuthContext);
     const {
         register,
         formState: { errors },
         handleSubmit,
     } = useForm();
-    const imgHostKey = '068e8b58e9a28384a889886932a5d806';
 
 
     const handleAddproduct = (data) => {
         const image = data.image[0];
         const formData = new FormData();
         formData.append("image", image);
-        fetch(`https://api.imgbb.com/1/upload?key=${imgHostKey}`, {
+        fetch(`https://api.imgbb.com/1/upload?key=${'3c02ebae27809e5199bba6cfb5fc3b1e'}`, {
             method: "POST",
             body: formData,
         })
@@ -89,10 +91,12 @@ const AddProduct = () => {
                                 },
                             })}
                             type="text"
+                            defaultValue={user?.displayName}
                             name="sellerName"
                             id="sellerName"
                             placeholder="Seller Name"
                             className="w-full px-4 py-3 rounded-md border-2 border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-300"
+                            disabled
                         />
                     </div>
                     {errors.name && (
@@ -204,9 +208,9 @@ const AddProduct = () => {
                             {...register("category", { required: true })}
                             className="select select-bordered w-full"
                         >
-                            <option value="1">Standard For Dual Purpose</option>
-                            <option value="2">Sport</option>
-                            <option value="3">Scooters</option>
+                            <option value="1">Scooters</option>
+                            <option value="2">Standard For Dual Purpose</option>
+                            <option value="3">Sport</option>
                         </select>
                     </div>
 

@@ -3,6 +3,7 @@ import SiteDetails from './SiteDetails';
 import Categories from './Categories';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../Shared/Loading/Loading';
+import Reviews from './Reviews/Reviews';
 
 const Home = () => {
     const url = 'http://localhost:5000/categories';
@@ -34,6 +35,7 @@ const Home = () => {
             </div>
 
             <SiteDetails></SiteDetails>
+            <Reviews></Reviews>
         </div>
     );
 };
