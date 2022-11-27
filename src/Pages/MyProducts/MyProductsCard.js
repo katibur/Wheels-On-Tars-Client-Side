@@ -133,7 +133,6 @@ const MyProductsCard = ({ singleProduct, refetch }) => {
                             </div>
                         </div>
 
-
                         <div className="sm:inline-flex sm:shrink-0 sm:items-center">
                             <button onClick={handleAdvertising} className="btn btn-outline rounded relative px-8 py-4 ml-4 overflow-hidden font-semibold dark:bg-gray-100 dark:text-gray-900">Advertise Item <FcAdvertising></FcAdvertising>
                             </button>

@@ -5,6 +5,12 @@ import useAdmin from '../Hooks/useAdmin/useAdmin';
 import { AuthContext } from '../Contexts/AuthProvider/AuthProvider';
 import useSeller from '../Hooks/isSeller/useSeller';
 import useBuyer from '../Hooks/useBuyer/useBuyer';
+import { IoAddCircle } from 'react-icons/io5';
+import { FaStore } from 'react-icons/fa';
+import { RiShoppingCartFill } from 'react-icons/ri';
+import { HiUserGroup } from 'react-icons/hi';
+import { ImUsers } from 'react-icons/im';
+import { ImManWoman } from 'react-icons/im';
 
 
 const DashboardLayout = () => {
@@ -27,22 +33,33 @@ const DashboardLayout = () => {
 
                         {
                             isBuyer &&
-                            <li><Link to='/dashboard/myorders'>My Orders</Link></li>
+                            <li><Link to='/dashboard/myorders'><RiShoppingCartFill></RiShoppingCartFill>My Orders</Link></li>
                         }
                         {
                             isAdmin && <>
-                                <li><Link to='/dashboard/users'>All Users</Link></li>
-                                <li><Link to='/dashboard/sellers'>All Seller</Link></li>
-                                <li><Link to='/dashboard/buyers'>All Buyers</Link></li>
+                                <li><Link to='/dashboard/users'><HiUserGroup></HiUserGroup>All Users</Link></li>
+                                <li><Link to='/dashboard/sellers'><ImUsers></ImUsers>All Seller</Link></li>
+                                <li><Link to='/dashboard/buyers'><ImManWoman></ImManWoman>All Buyers</Link></li>
                             </>
                         }
                         {
                             isSeller && <>
-                                <li><Link to='/dashboard/addProduct'>Add Product</Link></li>
-                                <li><Link to='/dashboard/myProducts'>My Products</Link></li>
+                                <li><Link to='/dashboard/addProduct'><IoAddCircle></IoAddCircle>Add Product</Link></li>
+                                <li><Link to='/dashboard/myProducts'><FaStore></FaStore>My Products</Link></li>
                             </>
                         }
-
+                        <div className='flex gap-3 mt-20'>
+                            <div className="avatar pt-6">
+                                <div className="w-7 h-7 rounded">
+                                    <img src={user.photoURL} alt='' />
+                                </div>
+                            </div>
+                            <div>
+                                <Link className='text-center'>View Profile</Link>
+                                <p>{user.displayName}</p>
+                                <p>{user.email}</p>
+                            </div>
+                        </div>
                     </ul>
 
                 </div>

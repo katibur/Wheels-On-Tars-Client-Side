@@ -83,7 +83,7 @@ const AddProduct = () => {
                             name="productName"
                             id="productName"
                             placeholder="productName"
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
+                            className="w-full px-4 py-3 text-black rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
                     </div>
                     {errors.productName && (
@@ -114,7 +114,7 @@ const AddProduct = () => {
                             name="warranty"
                             id="warranty"
                             placeholder="Warranty"
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
+                            className="w-full px-4 py-3  text-black rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
                     </div>
 
@@ -128,7 +128,7 @@ const AddProduct = () => {
                             name="used"
                             id="used"
                             placeholder="Used For Years"
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
+                            className="w-full  text-black px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
                     </div>
 
@@ -143,7 +143,7 @@ const AddProduct = () => {
                             id="sellerName"
                             defaultValue={user?.displayName}
                             disabled
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
+                            className="w-full px-4 py-3  text-black rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
                     </div>
                     {errors.sellerName && (
@@ -160,7 +160,7 @@ const AddProduct = () => {
                             name="location"
                             id="location"
                             placeholder="location"
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
+                            className="w-full  text-black px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
                     </div>
 
@@ -193,7 +193,7 @@ const AddProduct = () => {
                             name="originalprice"
                             id="originalprice"
                             placeholder="Original Price"
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
+                            className="w-full  text-black px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
                     </div>
                     {errors.email && (
@@ -260,7 +260,8 @@ const AddProduct = () => {
                             name="email"
                             id="email"
                             defaultValue={user?.email}
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
+                            disabled
+                            className="w-full px-4 py-3  text-black rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
                     </div>
                     {errors.email && (

@@ -40,7 +40,7 @@ const ProductCard = ({ setBooking, booking, product }) => {
                                 className="btn btn-primary"
                             >Book Now</label>
                             :
-                            <p className='text-red-500 font-bold text-2xl'>Please Login As Buyer To Book</p>
+                            <p className='text-red-500 font-bold text-2xl'>Please Login As Buyer To Buy</p>
                     }
 
                 </div>

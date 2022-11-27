@@ -35,7 +35,7 @@ const AllBuyers = () => {
                                     {
                                         user?.role === 'buyer' &&
                                         <>
-                                            <th>{i + 1}</th>
+                                            <th>{i + '0'}</th>
                                             <td>{user.name}</td>
                                             <td>{user.email}</td>
                                             <td>{user.role}</td></>

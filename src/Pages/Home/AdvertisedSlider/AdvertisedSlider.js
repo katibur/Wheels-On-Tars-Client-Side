@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const AdvertisedSlider = () => {
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/advertisedItems?email=${user?.email}`;
+    const url = `http://localhost:5000/advertisedItems`;
 
     const { data: advertisedProducts = [], isLoading, refetch } = useQuery({
         queryKey: ['advertisedProducts', user?.email],

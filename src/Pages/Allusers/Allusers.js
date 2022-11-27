@@ -32,23 +32,6 @@ const AllUsers = () => {
             })
     };
 
-    // const handleVerify = (userId) => {
-    //     fetch(`http://localhost:5000/users/admin/${userId}`, {
-    //         method: "PUT",
-    //         headers: {
-    //             authorization: `bearer ${localStorage.getItem('accessToken')}`
-    //         },
-    //     })
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             console.log(data);
-    //             if (data.modifiedCount > 0) {
-    //                 toast.success("Verified Successful");
-    //                 refetch();
-    //             }
-    //         });
-    // };
-
     return (
         <div>
             <h3 className='text-3xl'>All Users</h3>

@@ -24,7 +24,6 @@ const Home = () => {
 
     return (
         <div className='mx-auto'>
-            <h1 className='text-center text-4xl font-bold'>Buy & Sell AT WHEELS ON TARS</h1>
             <AdvertisedSlider></AdvertisedSlider>
 
             <h1 className='text-center text-3xl font-bold mt-10'>Category Wise Products.</h1>
