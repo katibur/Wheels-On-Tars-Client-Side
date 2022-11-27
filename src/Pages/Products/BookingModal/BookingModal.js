@@ -61,7 +61,7 @@ const BookingModal = ({ product, booking }) => {
                         <input name='phone' type="text" placeholder="Phone Number" className="input w-full input-bordered" />
                         <input name='location' type="text" placeholder="Meeting Location" className="input w-full input-bordered" />
 
-                        <input disabled name='price' type="text" defaultValue={booking?.resalePrice} placeholder="Price" className="input w-full input-bordered" />
+                        <input disabled name='price' type="text" defaultValue={booking.resalePrice ? booking.resalePrice : booking.price} placeholder="Price" className="input w-full input-bordered" />
 
                         <input className='w-full btn btn-accent input-bordered' type="submit" value="Submit" />
 

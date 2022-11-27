@@ -11,6 +11,7 @@ import { RiShoppingCartFill } from 'react-icons/ri';
 import { HiUserGroup } from 'react-icons/hi';
 import { ImUsers } from 'react-icons/im';
 import { ImManWoman } from 'react-icons/im';
+import { TbJewishStar } from 'react-icons/tb';
 
 
 const DashboardLayout = () => {
@@ -33,7 +34,10 @@ const DashboardLayout = () => {
 
                         {
                             isBuyer &&
-                            <li><Link to='/dashboard/myorders'><RiShoppingCartFill></RiShoppingCartFill>My Orders</Link></li>
+                            <>
+                                <li><Link to='/dashboard/myorders'><RiShoppingCartFill></RiShoppingCartFill>My Orders</Link></li>
+                                <li><Link to='/dashboard/wishlist'><TbJewishStar></TbJewishStar>WishList</Link></li>
+                            </>
                         }
                         {
                             isAdmin && <>

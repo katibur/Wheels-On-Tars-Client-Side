@@ -19,6 +19,7 @@ import AddProduct from "../../Pages/AddProduct/AddProduct";
 import Dashboard from '../../Pages/Dashboard/Dashboard';
 import AllSellers from "../../Pages/AllSellers/AllSellers";
 import AllBuyers from "../../Pages/AllBuyers/AllBuyers";
+import WishList from "../../Pages/Dashboard/WishList/WishList";
 
 export const router = createBrowserRouter([
     {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/myorders',
                 element: <BookedProducts></BookedProducts>
+            },
+            {
+                path: '/dashboard/wishlist',
+                element: <WishList></WishList>
             },
             {
                 path: '/dashboard/users',
