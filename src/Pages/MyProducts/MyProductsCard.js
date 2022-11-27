@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AiFillDelete } from 'react-icons/ai';
+import { FcAdvertising } from 'react-icons/fc'
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const MyProductsCard = ({ singleProduct, refetch }) => {
 
-    const { _id, name, img, warranty, used, location, originalPrice, time, resalePrice, condition, description } = singleProduct;
-
-
-
-
+    const { _id, category_id, name, img, warranty, used, location, originalPrice, time, resalePrice, condition, description } = singleProduct;
 
     const handleDelete = id => {
         fetch(`http://localhost:5000/users/seller/${id}`, {
@@ -28,9 +26,45 @@ const MyProductsCard = ({ singleProduct, refetch }) => {
             })
     };
 
+    const { user } = useContext(AuthContext);
+    const sellername = user?.displayName;
+    const userEmail = user?.email;
+    const handleAdvertising = () => {
 
+        const addedProduct = {
+            _id: _id,
+            name: name,
+            category_id: category_id,
+            warranty: warranty,
+            used: used,
+            sellerName: sellername,
+            location: location,
+            condition: condition,
+            originalPrice: originalPrice,
+            resalePrice: resalePrice,
+            img: img,
+            description: description,
+            email: userEmail
+        };
 
-
+        fetch('http://localhost:5000/advertisedItems', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(addedProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success('Advertised Confirmed.');
+                }
+                else {
+                    toast.error(data.message);
+                }
+            })
+    }
 
     return (
         <div>
@@ -101,7 +135,7 @@ const MyProductsCard = ({ singleProduct, refetch }) => {
 
 
                         <div className="sm:inline-flex sm:shrink-0 sm:items-center">
-                            <button className="btn btn-outline rounded relative px-8 py-4 ml-4 overflow-hidden font-semibold dark:bg-gray-100 dark:text-gray-900">Advertise Item
+                            <button onClick={handleAdvertising} className="btn btn-outline rounded relative px-8 py-4 ml-4 overflow-hidden font-semibold dark:bg-gray-100 dark:text-gray-900">Advertise Item <FcAdvertising></FcAdvertising>
                             </button>
                         </div>
 
