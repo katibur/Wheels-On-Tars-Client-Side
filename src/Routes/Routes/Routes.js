@@ -20,6 +20,7 @@ import Dashboard from '../../Pages/Dashboard/Dashboard';
 import AllSellers from "../../Pages/AllSellers/AllSellers";
 import AllBuyers from "../../Pages/AllBuyers/AllBuyers";
 import WishList from "../../Pages/Dashboard/WishList/WishList";
+import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
 
 export const router = createBrowserRouter([
     {
@@ -57,15 +58,15 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard',
-                element: <Dashboard></Dashboard>
+                element: <PrivateRouter><Dashboard></Dashboard></PrivateRouter>
             },
             {
                 path: '/dashboard/myorders',
-                element: <BookedProducts></BookedProducts>
+                element: <PrivateRouter><BookedProducts></BookedProducts></PrivateRouter>
             },
             {
                 path: '/dashboard/wishlist',
-                element: <WishList></WishList>
+                element: <PrivateRouter><WishList></WishList></PrivateRouter>
             },
             {
                 path: '/dashboard/users',
@@ -80,16 +81,20 @@ export const router = createBrowserRouter([
                 element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             },
             {
+                path: '/dashboard/reportedItems',
+                element: <AdminRoute><ReportedItems></ReportedItems></AdminRoute>
+            },
+            {
                 path: '/dashboard/addProduct',
-                element: <AddProduct></AddProduct>
+                element: <PrivateRouter><AddProduct></AddProduct></PrivateRouter>
             },
             {
                 path: '/dashboard/myProducts',
-                element: <MyProducts></MyProducts>
+                element: <PrivateRouter><MyProducts></MyProducts></PrivateRouter>
             },
             {
                 path: '/dashboard/payment/:id',
-                element: <Payment></Payment>,
+                element: <PrivateRouter> <Payment></Payment></PrivateRouter>,
                 loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
             }
         ]

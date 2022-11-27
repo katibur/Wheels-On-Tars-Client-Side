@@ -8,13 +8,13 @@ import { MdReportProblem } from 'react-icons/md';
 import toast from 'react-hot-toast';
 
 const ProductCard = ({ setBooking, booking, product }) => {
-    const { img, name, location, originalPrice, resalePrice, warranty, used, sellerName, time, description, condition } = product;
-    const { user } = useContext(AuthContext);
 
+    const { img, name, location, originalPrice, resalePrice, warranty, used, sellerName, time, description, condition } = product;
+
+    const { user } = useContext(AuthContext);
     const [isBuyer] = useBuyer(user?.email);
 
     const handleWishlist = () => {
-
         const wishlistProduct = {
             productName: product.name,
             price: product.resalePrice,
@@ -22,7 +22,6 @@ const ProductCard = ({ setBooking, booking, product }) => {
             location,
             email: user.email
         }
-
         fetch('http://localhost:5000/wishlist', {
             method: 'POST',
             headers: {
@@ -35,6 +34,33 @@ const ProductCard = ({ setBooking, booking, product }) => {
                 console.log(data);
                 if (data.acknowledged) {
                     toast.success('Added To WishList');
+                }
+                else {
+                    toast.error(data.message);
+                }
+            })
+    }
+
+    const handleReport = () => {
+        const wishlistProduct = {
+            productName: product.name,
+            price: product.resalePrice,
+            sellerName: product.sellerName,
+            location,
+            email: user.email
+        }
+        fetch('http://localhost:5000/reportedItems', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(wishlistProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success('Reported To Admin.');
                 }
                 else {
                     toast.error(data.message);
@@ -69,13 +95,15 @@ const ProductCard = ({ setBooking, booking, product }) => {
                                 <label
                                     onClick={() => setBooking(product)}
                                     htmlFor="booking-modal"
-                                    className="btn btn-outline"
+                                    className="btn btn-md btn-outline"
                                 >Book Now</label>
                                 <label
                                     onClick={handleWishlist}
-                                    className="btn btn-outline"
+                                    className="btn btn-md btn-outline"
                                 >Add To WishList</label>
-                                <button className='btn btn-ghost mx-auto'><MdReportProblem></MdReportProblem></button>
+                                <button
+                                    className='btn btn-sm btn-ghost mx-auto mt-3'
+                                    onClick={handleReport}><MdReportProblem></MdReportProblem></button>
                             </>
                             :
                             <p className='text-red-500 font-bold text-2xl'>Please Login As Buyer To Book</p>

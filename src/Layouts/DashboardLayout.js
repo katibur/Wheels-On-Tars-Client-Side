@@ -12,6 +12,7 @@ import { HiUserGroup } from 'react-icons/hi';
 import { ImUsers } from 'react-icons/im';
 import { ImManWoman } from 'react-icons/im';
 import { TbJewishStar } from 'react-icons/tb';
+import { VscReport } from 'react-icons/vsc';
 
 
 const DashboardLayout = () => {
@@ -44,6 +45,7 @@ const DashboardLayout = () => {
                                 <li><Link to='/dashboard/users'><HiUserGroup></HiUserGroup>All Users</Link></li>
                                 <li><Link to='/dashboard/sellers'><ImUsers></ImUsers>All Seller</Link></li>
                                 <li><Link to='/dashboard/buyers'><ImManWoman></ImManWoman>All Buyers</Link></li>
+                                <li><Link to='/dashboard/reportedItems'><VscReport></VscReport>Reported Items</Link></li>
                             </>
                         }
                         {
