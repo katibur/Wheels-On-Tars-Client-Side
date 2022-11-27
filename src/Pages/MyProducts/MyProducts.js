@@ -10,7 +10,7 @@ const MyProducts = () => {
 
     const url = `http://localhost:5000/myProducts?email=${user?.email}`;
 
-    const { data: myproducts = [], isLoading } = useQuery({
+    const { data: myproducts = [], isLoading, refetch } = useQuery({
         queryKey: ['myproducts', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
@@ -33,6 +33,7 @@ const MyProducts = () => {
                     <MyProductsCard
                         key={singleProduct._id}
                         singleProduct={singleProduct}
+                        refetch={refetch}
                     ></MyProductsCard>)
             }
         </div>

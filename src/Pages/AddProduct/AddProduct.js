@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
+import { useNavigate } from 'react-router-dom';
+
 const AddProduct = () => {
     const { user } = useContext(AuthContext);
     const {
@@ -10,6 +12,8 @@ const AddProduct = () => {
         formState: { errors },
         handleSubmit,
     } = useForm();
+
+    const navigate = useNavigate();
 
     const time = new Date();
     const showTime = time.getHours()
@@ -55,6 +59,9 @@ const AddProduct = () => {
                         .then((data) => {
                             console.log(data);
                             toast.success("Product added successfully");
+                            if (data.acknowledged === true) {
+                                navigate('/dashboard/myProducts', { replace: true });
+                            }
                         });
                 }
             });
