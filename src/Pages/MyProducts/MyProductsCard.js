@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const MyProductsCard = ({ singleProduct }) => {
 
-    const { name, img, warranty, used, location, originalPrice, time, resalePrice } = singleProduct;
+    const { name, img, warranty, used, location, originalPrice, time, resalePrice, condition, description } = singleProduct;
     console.log(singleProduct);
     return (
         <div>
@@ -16,13 +16,12 @@ const MyProductsCard = ({ singleProduct }) => {
                 <div className="mt-2">
                     <dl>
                         <div>
-                            <dt className="sr-only">Price</dt>
-                            <dd className="text-sm text-gray-500">{resalePrice} BDT/=</dd>
-                        </div>
-
-                        <div>
                             <dt className="sr-only">Name</dt>
                             <dd className="font-medium">{name}</dd>
+                        </div>
+                        <div>
+                            <dt className="sr-only">Details</dt>
+                            <dd className="font-medium">{description}</dd>
                         </div>
                     </dl>
 
@@ -53,6 +52,21 @@ const MyProductsCard = ({ singleProduct }) => {
                                 <p className="text-gray-500">original Price</p>
 
                                 <p className="font-medium">{originalPrice}</p>
+                            </div>
+                        </div>
+
+                        <div className="sm:inline-flex sm:shrink-0 sm:items-center">
+                            <div className="mt-1.5 sm:ml-3 sm:mt-0">
+                                <p className="text-gray-500">Asking Price</p>
+
+                                <p className="font-medium">{resalePrice}</p>
+                            </div>
+                        </div>
+                        <div className="sm:inline-flex sm:shrink-0 sm:items-center">
+                            <div className="mt-1.5 sm:ml-3 sm:mt-0">
+                                <p className="text-gray-500">Product Condition</p>
+
+                                <p className="font-medium">{condition}</p>
                             </div>
                         </div>
 

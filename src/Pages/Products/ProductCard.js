@@ -6,7 +6,7 @@ import 'react-photo-view/dist/react-photo-view.css';
 import useBuyer from '../../Hooks/useBuyer/useBuyer';
 
 const ProductCard = ({ setBooking, booking, product }) => {
-    const { img, name, location, originalPrice, resalePrice, warranty, used, sellerName, time } = product;
+    const { img, name, location, originalPrice, resalePrice, warranty, used, sellerName, time, description, condition } = product;
     const { user } = useContext(AuthContext);
 
     const [isBuyer] = useBuyer(user?.email);
@@ -28,6 +28,8 @@ const ProductCard = ({ setBooking, booking, product }) => {
                 <p><span className='font-bold'>Warranty Left:</span> {warranty}</p>
                 <p><span className='font-bold'>Used For:</span> {used}</p>
                 <p><span className='font-bold'>Seller Name:</span> {sellerName}</p>
+                <p><span className='font-bold'>Conditon:</span> {condition}</p>
+                <p><span className='font-bold'>Details:</span> {description}</p>
                 <p><span className='font-bold'>Posted On:</span> {time ? time : '2 Weeks Ago'}</p>
                 <div className="card-actions justify-end">
                     {

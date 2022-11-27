@@ -77,7 +77,7 @@ const CheckoutForm = ({ booking }) => {
                 bookingId: _id
             }
 
-            fetch('https://doctors-portal-server-azure-pi.vercel.app/payments', {
+            fetch('http://localhost:5000/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

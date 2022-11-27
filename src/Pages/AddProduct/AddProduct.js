@@ -34,9 +34,11 @@ const AddProduct = () => {
                         used: data.used,
                         sellerName: data.sellerName,
                         location: data.location,
-                        originalPrice: data.originalprice,
-                        resalePrice: data.resaleprice,
+                        condition: data.condition,
+                        originalPrice: parseInt(data.originalprice),
+                        resalePrice: parseInt(data.resaleprice),
                         img: imgData.data.url,
+                        description: data.message,
                         email: data.email,
                         time: showTime
                     };
@@ -58,7 +60,7 @@ const AddProduct = () => {
             });
     };
     return (
-        <div className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-100 mt-12 mb-12">
+        <div className="max-w-4xl p-6 mx-auto bg-gray-700 rounded-md shadow-md mt-12 mb-12">
             <form onSubmit={handleSubmit(handleAddproduct)}>
                 <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2 items-center">
 
@@ -74,7 +76,7 @@ const AddProduct = () => {
                             name="productName"
                             id="productName"
                             placeholder="productName"
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-300"
+                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
                     </div>
                     {errors.productName && (
@@ -105,7 +107,7 @@ const AddProduct = () => {
                             name="warranty"
                             id="warranty"
                             placeholder="Warranty"
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-300"
+                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
                     </div>
 
@@ -119,7 +121,7 @@ const AddProduct = () => {
                             name="used"
                             id="used"
                             placeholder="Used For Years"
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-300"
+                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
                     </div>
 
@@ -134,7 +136,7 @@ const AddProduct = () => {
                             id="sellerName"
                             defaultValue={user?.displayName}
                             disabled
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-300"
+                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
                     </div>
                     {errors.sellerName && (
@@ -151,8 +153,25 @@ const AddProduct = () => {
                             name="location"
                             id="location"
                             placeholder="location"
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-300"
+                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
+                    </div>
+
+                    <div>
+                        <label
+                            htmlFor="condition"
+                            className="block dark:text-gray-400 mt-6"
+                        >
+                            Condition
+                        </label>
+                        <select
+                            {...register("condition", { required: true })}
+                            className="select select-bordered w-full"
+                        >
+                            <option>excellent</option>
+                            <option>Good</option>
+                            <option>Fair</option>
+                        </select>
                     </div>
 
                     <div>
@@ -167,7 +186,7 @@ const AddProduct = () => {
                             name="originalprice"
                             id="originalprice"
                             placeholder="Original Price"
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-300"
+                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
                     </div>
                     {errors.email && (
@@ -186,7 +205,7 @@ const AddProduct = () => {
                             name="resaleprice"
                             id="resaleprice"
                             placeholder="resaleprice"
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-300"
+                            className="w-full text-black px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
                     </div>
                     {errors.email && (
@@ -206,7 +225,19 @@ const AddProduct = () => {
                             id="image"
                             accept="image/*"
                             placeholder="Insert Your Product's Image."
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-300"
+                            className="w-full text-black px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="message" className="block dark:text-gray-400">
+                            Message
+                        </label>
+                        <textarea
+                            {...register("message", { required: "message is Required" })}
+                            name="message"
+                            placeholder="Product Details & Usage"
+                            className="w-full text-black px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
                     </div>
 
@@ -222,7 +253,7 @@ const AddProduct = () => {
                             name="email"
                             id="email"
                             defaultValue={user?.email}
-                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-300"
+                            className="w-full px-4 py-3 rounded-md border-2 border-gray-300  dark:text-black focus:dark:border-violet-300"
                         />
                     </div>
                     {errors.email && (
