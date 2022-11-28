@@ -27,15 +27,8 @@ const ReportedItems = () => {
         return <Loading></Loading>
     }
 
-
-
-
-
-
-
-
     const handleDelete = id => {
-        fetch(`http://localhost:5000/reportedItemsCollection/${id}`, {
+        fetch(`http://localhost:5000/reportedItems/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -50,16 +43,6 @@ const ReportedItems = () => {
                 }
             })
     };
-
-
-
-
-
-
-
-
-
-
 
     return (
         <div>

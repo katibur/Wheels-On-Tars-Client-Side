@@ -90,7 +90,7 @@ const ProductCard = ({ setBooking, booking, product }) => {
                 <p><span className='font-bold'>Posted On:</span> {time ? time : '2 Weeks Ago'}</p>
                 <div className="card-actions justify-between">
                     {
-                        isBuyer ?
+                        isBuyer && user?.email ?
                             <>
                                 <label
                                     onClick={() => setBooking(product)}

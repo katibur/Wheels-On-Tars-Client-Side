@@ -1,10 +1,10 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-
+import toast from 'react-hot-toast';
 
 const AllSellers = () => {
 
-    const { data: users = [] } = useQuery({
+    const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/users')
@@ -13,23 +13,22 @@ const AllSellers = () => {
         }
     });
 
-
-    // const handleVerify = (userId) => {
-    //     fetch(`http://localhost:5000/users/admin/${userId}`, {
-    //         method: "PUT",
-    //         headers: {
-    //             authorization: `bearer ${localStorage.getItem('accessToken')}`
-    //         },
-    //     })
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             console.log(data);
-    //             if (data.modifiedCount > 0) {
-    //                 toast.success("Verified Successful");
-    //                 refetch();
-    //             }
-    //         });
-    // };
+    const handleDelete = id => {
+        fetch(`http://localhost:5000/users/admin/${id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.deletedCount > 0) {
+                    toast.success('Deleted successfully');
+                    refetch();
+                }
+            })
+    };
 
     return (
         <div>
@@ -42,6 +41,7 @@ const AllSellers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Action</th>
 
                         </tr>
                     </thead>
@@ -56,7 +56,9 @@ const AllSellers = () => {
                                             <th>{i + '0'}</th>
                                             <td>{user.name}</td>
                                             <td>{user.email}</td>
-                                            <td>{user.role}</td></>
+                                            <td>{user.role}</td>
+                                            <td><button onClick={() => handleDelete(user._id)} className='btn btn-xs'>Delete</button></td>
+                                        </>
                                     }
                                 </tr>
                             )

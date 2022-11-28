@@ -12,7 +12,7 @@ const AdvertisedSliderItems = ({ singleAdvertisedProduct, refetch }) => {
     const [isSeller] = useSeller(user?.email);
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/users/seller/${id}`, {
+        fetch(`http://localhost:5000/advertisedItems/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -43,7 +43,7 @@ const AdvertisedSliderItems = ({ singleAdvertisedProduct, refetch }) => {
                                 {
                                     isSeller &&
                                     <div className="sm:inline-flex sm:shrink-0 sm:items-center">
-                                        <button onClick={() => handleDelete(_id)} className='btn btn-ghost'><AiFillDelete></AiFillDelete>
+                                        <button onClick={() => handleDelete(singleAdvertisedProduct._id)} className='btn btn-ghost'><AiFillDelete></AiFillDelete>
                                         </button>
                                     </div>
                                 }

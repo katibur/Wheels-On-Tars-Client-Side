@@ -1,17 +1,20 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
-import { useQuery } from '@tanstack/react-query';
 import Loading from '../Shared/Loading/Loading';
 import MyProductsCard from './MyProductsCard';
 
-const MyProducts = () => {
+
+
+
+const MyProduct = () => {
 
     const { user } = useContext(AuthContext);
 
     const url = `http://localhost:5000/myProducts?email=${user?.email}`;
 
-    const { data: myproducts = [], isLoading, refetch } = useQuery({
-        queryKey: ['myproducts', user?.email],
+    const { data: myProducts = [], isLoading, refetch } = useQuery({
+        queryKey: ['myProducts', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
                 headers: {
@@ -25,11 +28,13 @@ const MyProducts = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
+    console.log(myProducts)
 
     return (
-        <div>
+        <div className='grid grid:cols-1 gap-3 w-[1200px] mx-auto'>
+
             {
-                myproducts.map(singleProduct =>
+                myProducts.map(singleProduct =>
                     <MyProductsCard
                         key={singleProduct._id}
                         singleProduct={singleProduct}
@@ -37,7 +42,9 @@ const MyProducts = () => {
                     ></MyProductsCard>)
             }
         </div>
+
     );
 };
 
-export default MyProducts;
+export default MyProduct;
+

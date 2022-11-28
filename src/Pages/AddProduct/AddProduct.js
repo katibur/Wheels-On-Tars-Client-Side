@@ -43,7 +43,7 @@ const AddProduct = () => {
                         resalePrice: parseInt(data.resaleprice),
                         img: imgData.data.url,
                         description: data.message,
-                        email: data.email,
+                        email: user.email,
                         time: showTime
                     };
                     console.log(addedProduct);
@@ -253,9 +253,7 @@ const AddProduct = () => {
                             Email
                         </label>
                         <input
-                            {...register("email", {
-                                required: "Email Is Required",
-                            })}
+                            {...register("email")}
                             type="email"
                             name="email"
                             id="email"
