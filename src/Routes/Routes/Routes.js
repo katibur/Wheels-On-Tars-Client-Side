@@ -47,7 +47,7 @@ export const router = createBrowserRouter([
             {
                 path: '/categories/:id',
                 loader: ({ params }) => fetch(`https://wheels-on-tars-server-katibur.vercel.app/categories/${params.id}`),
-                element: <Products></Products>
+                element: <PrivateRouter><Products></Products></PrivateRouter>
             }
         ]
     },
