@@ -6,13 +6,13 @@ import toast from 'react-hot-toast';
 
 const AdvertisedSliderItems = ({ singleAdvertisedProduct, refetch }) => {
 
-    const { _id, resalePrice, img, name, description } = singleAdvertisedProduct;
+    const { resalePrice, img, name, description } = singleAdvertisedProduct;
 
     const { user } = useContext(AuthContext);
     const [isSeller] = useSeller(user?.email);
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/advertisedItems/${id}`, {
+        fetch(`https://wheels-on-tars-server-katibur.vercel.app/advertisedItems/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

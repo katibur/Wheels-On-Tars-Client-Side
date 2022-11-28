@@ -47,7 +47,7 @@ const AddProduct = () => {
                         time: showTime
                     };
                     console.log(addedProduct);
-                    fetch("http://localhost:5000/addProduct", {
+                    fetch("https://wheels-on-tars-server-katibur.vercel.app/addProduct", {
                         method: "POST",
                         headers: {
                             "content-type": "application/json",

@@ -11,7 +11,7 @@ const MyProduct = () => {
 
     const { user } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/myProducts?email=${user?.email}`;
+    const url = `https://wheels-on-tars-server-katibur.vercel.app/myProducts?email=${user?.email}`;
 
     const { data: myProducts = [], isLoading, refetch } = useQuery({
         queryKey: ['myProducts', user?.email],

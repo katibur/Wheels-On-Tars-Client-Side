@@ -9,7 +9,7 @@ const WishList = () => {
 
     const [booking, setBooking] = useState([]);
 
-    const url = `http://localhost:5000/wishlist?email=${user?.email}`;
+    const url = `https://wheels-on-tars-server-katibur.vercel.app/wishlist?email=${user?.email}`;
 
     const { data: wishlistItems = [], isLoading } = useQuery({
         queryKey: ['wishlistItems', user?.email],

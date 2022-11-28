@@ -22,7 +22,7 @@ const ProductCard = ({ setBooking, booking, product }) => {
             location,
             email: user.email
         }
-        fetch('http://localhost:5000/wishlist', {
+        fetch('https://wheels-on-tars-server-katibur.vercel.app/wishlist', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -49,7 +49,7 @@ const ProductCard = ({ setBooking, booking, product }) => {
             location,
             email: user.email
         }
-        fetch('http://localhost:5000/reportedItems', {
+        fetch('https://wheels-on-tars-server-katibur.vercel.app/reportedItems', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

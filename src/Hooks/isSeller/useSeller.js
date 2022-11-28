@@ -8,7 +8,7 @@ const useSeller = email => {
     const [isSeller, setIsSeller] = useState(false);
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/users/seller/${email}`)
+            fetch(`https://wheels-on-tars-server-katibur.vercel.app/users/seller/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);

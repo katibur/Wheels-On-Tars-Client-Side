@@ -8,7 +8,7 @@ const useAdmin = email => {
     const [isAdmin, setIsAdmin] = useState(false);
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/users/admin/${email}`)
+            fetch(`https://wheels-on-tars-server-katibur.vercel.app/users/admin/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);

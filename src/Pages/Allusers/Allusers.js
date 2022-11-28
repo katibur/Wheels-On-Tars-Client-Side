@@ -9,14 +9,14 @@ const AllUsers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users', user?.email],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users')
+            const res = await fetch('https://wheels-on-tars-server-katibur.vercel.app/users')
             const data = await res.json();
             return data;
         }
     });
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://wheels-on-tars-server-katibur.vercel.app/users/admin/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

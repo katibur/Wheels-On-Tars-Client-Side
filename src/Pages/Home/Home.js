@@ -7,7 +7,7 @@ import Reviews from './Reviews/Reviews';
 import AdvertisedSlider from './AdvertisedSlider/AdvertisedSlider';
 
 const Home = () => {
-    const url = 'http://localhost:5000/categories';
+    const url = 'https://wheels-on-tars-server-katibur.vercel.app/categories';
 
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],

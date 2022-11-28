@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 const ReportedItems = () => {
     const { user } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/reportedItems?email=${user?.email}`;
+    const url = `https://wheels-on-tars-server-katibur.vercel.app/reportedItems?email=${user?.email}`;
 
     const { data: reportedItems = [], isLoading, refetch } = useQuery({
         queryKey: ['reportedItems', user?.email],
@@ -28,7 +28,7 @@ const ReportedItems = () => {
     }
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/reportedItems/${id}`, {
+        fetch(`https://wheels-on-tars-server-katibur.vercel.app/reportedItems/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

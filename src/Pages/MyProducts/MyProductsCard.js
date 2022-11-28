@@ -12,7 +12,7 @@ const MyProductsCard = ({ singleProduct, refetch }) => {
     const { _id, category_id, name, img, warranty, used, location, originalPrice, time, resalePrice, condition, description } = singleProduct;
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/users/seller/${id}`, {
+        fetch(`https://wheels-on-tars-server-katibur.vercel.app/users/seller/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -49,7 +49,7 @@ const MyProductsCard = ({ singleProduct, refetch }) => {
             email: userEmail
         };
 
-        fetch('http://localhost:5000/advertisedItems', {
+        fetch('https://wheels-on-tars-server-katibur.vercel.app/advertisedItems', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -46,7 +46,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/categories/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`),
+                loader: ({ params }) => fetch(`https://wheels-on-tars-server-katibur.vercel.app/categories/${params.id}`),
                 element: <Products></Products>
             }
         ]
@@ -95,7 +95,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <PrivateRouter> <Payment></Payment></PrivateRouter>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({ params }) => fetch(`https://wheels-on-tars-server-katibur.vercel.app/bookings/${params.id}`)
             }
         ]
     },

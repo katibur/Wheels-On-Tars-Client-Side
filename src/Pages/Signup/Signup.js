@@ -54,7 +54,7 @@ const Signup = () => {
             role
         }
         // console.log(user);
-        fetch('http://localhost:5000/users', {
+        fetch('https://wheels-on-tars-server-katibur.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -85,7 +85,7 @@ const Signup = () => {
             name,
             role: 'buyer'
         }
-        fetch('http://localhost:5000/users', {
+        fetch('https://wheels-on-tars-server-katibur.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
