@@ -13,7 +13,7 @@ import { Autoplay, EffectCoverflow, Pagination } from "swiper";
 
 const Reviews = () => {
   return (
-    <div className="reviews">
+    <div className="reviews my-12">
       <h2 className="text-center mt-8 text-3xl font-bold">Top Reviews</h2>
       <>
         <Swiper
