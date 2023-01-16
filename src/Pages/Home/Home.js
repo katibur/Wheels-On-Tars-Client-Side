@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import Loading from "../Shared/Loading/Loading";
 import Reviews from "./Reviews/Reviews";
 import AdvertisedSlider from "./AdvertisedSlider/AdvertisedSlider";
+import Banner from "./Banner/Banner";
 
 const Home = () => {
   const url = "https://wheels-on-tars-server-katibur.vercel.app/categories";
@@ -23,6 +24,7 @@ const Home = () => {
 
   return (
     <div className="mx-auto">
+      <Banner></Banner>
       <h1 className="text-center text-3xl font-bold my-3">
         Flat 37% off on these
       </h1>
